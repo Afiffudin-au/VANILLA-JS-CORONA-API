@@ -7,33 +7,52 @@ let dataFixs;
 
 //--------------------------------------------
 //get data world (3 summary)
-function getWorldData(){
+function getWorldData() {
   return fetch('https://api.covid19api.com/world/total')
-  .then((result) => result.json())
-  .then((result) => result);
+    .then((result) => {
+      if (!result.ok) {
+        throw new Error(result.statusText);
+      }
+      return result.json();
+    })
+    .then((result) => {
+      return result;
+    });
 }
 //display world data (3 summary)
-async function displayWorldData(){
-  const result = await getWorldData();
-  totalCases.innerHTML = numberWithCommas(result.TotalConfirmed);
-  recoveryCases.innerHTML = numberWithCommas(result.TotalRecovered);
-  deathCases.innerHTML = numberWithCommas(result.TotalDeaths);
+async function displayWorldData() {
+  try {
+    const result = await getWorldData();
+    totalCases.innerHTML = numberWithCommas(result.TotalConfirmed);
+    recoveryCases.innerHTML = numberWithCommas(result.TotalRecovered);
+    deathCases.innerHTML = numberWithCommas(result.TotalDeaths);
+  } catch (err) {
+    alert(err);
+  }
 }
 
 // ---------------------------------------------
 //get summary data world almost all
-function getSummaryData(){
+function getSummaryData() {
   return fetch('https://api.covid19api.com/summary')
-  .then((result) => result.json())
-  .then((result) => result);
+    .then((result) => {
+      if (!result.ok) {
+        throw new Error(result.statusText);
+      }
+      return result.json();
+    })
+    .then((result) => result);
 }
 //display summary data almost all
-async function displaySummaryData(){
-  const dataSummary = await getSummaryData();
-  dataFixs = dataSummary.Countries;
-  dataTable.innerHTML = getDataTable(dataFixs);
+async function displaySummaryData() {
+  try {
+    const dataSummary = await getSummaryData();
+    dataFixs = dataSummary.Countries;
+    dataTable.innerHTML = getDataTable(dataFixs);
+  } catch (err) {
+    alert(err);
+  }
 }
-
 
 function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -61,5 +80,5 @@ function handleSort() {
   dataTable.innerHTML = getDataTable(dataFixs);
 }
 changeSort.addEventListener('change', handleSort);
-window.addEventListener('load',displayWorldData);
-window.addEventListener('load',displaySummaryData);
+window.addEventListener('load', displayWorldData);
+window.addEventListener('load', displaySummaryData);
