@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Corona Data</title>
   <style>
+
      .list-group-item{
       font-size: 20px;
     }
@@ -13,6 +14,9 @@
     }
     .sort{
         margin-left: 10px;
+    }
+    #myChart{
+      overflow-x: scroll;
     }
     @media (max-width: 576px) { 
       table td ,table th{
@@ -68,6 +72,13 @@
       </div>
     </div>
   </div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-12">
+        <canvas id="myChart" width="700" height="400"></canvas>
+      </div>
+    </div>
+  </div>
   <div class="container my-3 sort-menu d-flex justify-content-center">  
     <select class="sort">
       <option class="dropdown-toggle">Sort Total Case</option>
@@ -83,7 +94,9 @@
   <div class="container-fluid">
      <input class="form-control " id="tableSearch" type="text" placeholder="Search" style="width: 70%; margin: auto;">
   </div>
- 
+  
+  
+  
   <div class="container">
     <div class="table-responsive my-3">
     <table class="table">
@@ -108,6 +121,10 @@
   
   
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@0.7.7"></script>
+  <script src="chart.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

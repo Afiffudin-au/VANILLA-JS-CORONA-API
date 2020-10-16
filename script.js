@@ -92,7 +92,6 @@ function handleSortByCountry() {
   }
   dataTable.innerHTML = getDataTable(dataFixs);
 }
-
 function handleSearch() {
   let txtValue;
   const filter = this.value.toUpperCase();
